@@ -1,12 +1,12 @@
-IP_EXTRACT(1)							 IP_EXTRACT(1)
+IPEX(1) 							       IPEX(1)
 
 
 
 NAME
-       ip_extract - IP/Mac Address Extractor
+       ipex - IP/Mac Address Extractor
 
 SYNOPSIS
-       ip_extract FILE [-m THRESHOLD] [-i THRESHOLD]
+       ipex FILE [-m THRESHOLD] [-i THRESHOLD]
 
 DESCRIPTION
        Find  and  extract  IP and MAC addresses in FILE. Addresses with repeat
@@ -49,4 +49,4 @@ NOTE ON LARGE FILES
 
 
 
-				  August 2013			 IP_EXTRACT(1)
+				  August 2013			       IPEX(1)
