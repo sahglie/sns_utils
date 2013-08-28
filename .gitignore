@@ -21,4 +21,5 @@ ip_addrs.txt
 TODO.md
 .idea
 *.iml
-lib/sns_utils/man
+man/ip_extract
+man/ip_extract.txt

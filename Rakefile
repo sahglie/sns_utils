@@ -3,13 +3,13 @@ require 'ronn'
 
 
 namespace :man do
-  directory "lib/sns_utils/man"
+  directory "man"
 
   Dir["man/*.ronn"].each do |ronn|
     basename = File.basename(ronn, ".ronn")
-    roff = "lib/sns_utils/man/#{basename}"
+    roff = "man/#{basename}"
 
-    file roff => ["lib/sns_utils/man", ronn] do
+    file roff => ["man", ronn] do
       sh "#{Gem.ruby} -S ronn --roff --pipe #{ronn} > #{roff}"
     end
 
@@ -25,7 +25,8 @@ namespace :man do
 
   desc "Clean up from the built man pages"
   task :clean do
-    rm_rf "lib/sns_utils/man"
+    rm "man/ip_extract"
+    rm "man/ip_extract.txt"
   end
 end
 
