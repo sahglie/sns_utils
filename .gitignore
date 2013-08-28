@@ -16,3 +16,6 @@ test/tmp
 test/version_tmp
 tmp
 spec/fixtures/xlarge.log
+mac_addr_file.txt
+ip_addr_file.txt
+TODO.md
