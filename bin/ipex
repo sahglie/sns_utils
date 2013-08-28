@@ -10,5 +10,5 @@ begin
 rescue Errno::ENOENT => err
   abort "ipex: #{err.message}"
 rescue OptionParser::InvalidOption, OptionParser::InvalidArgument => err
-  abort "usage: file [-m mac_threshold] [-i ip_threshold]"
+  abort "usage: ipex file [-m mac_threshold] [-i ip_threshold]"
 end

@@ -1,9 +1,9 @@
-ip_extract(1) -- IP/Mac Address Extractor
+ipex(1) -- IP/Mac Address Extractor
 =======================================
 
 ## SYNOPSIS
 
-`ip_extract` FILE [-m THRESHOLD] [-i THRESHOLD]
+`ipex` FILE [-m THRESHOLD] [-i THRESHOLD]
 
 ## DESCRIPTION
 

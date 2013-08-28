@@ -1,0 +1,52 @@
+IP_EXTRACT(1)							 IP_EXTRACT(1)
+
+
+
+NAME
+       ip_extract - IP/Mac Address Extractor
+
+SYNOPSIS
+       ip_extract FILE [-m THRESHOLD] [-i THRESHOLD]
+
+DESCRIPTION
+       Find  and  extract  IP and MAC addresses in FILE. Addresses with repeat
+       occurrences greater than or equal to a given threshold  are  logged  to
+       ip_addrs.txt  and mac_addrs.txt respectively. By default, MAC addresses
+       that occur at least 8 times are logged and IP addresses that  occur  at
+       least 10 times are logged.
+
+OPTIONS
+       -m     Set the MAC address threshold--default is 8
+
+       -i     Set the IP address threshold--default is 10
+
+       -d     Specify directory where MAC and IP output logs should be written
+	      to--defaults to current directory
+
+FORMATS
+       Matches the following address formats:
+
+       o   IPv4: standard format a.b.c.d
+
+       o   IPv6: canonical format a:b:c:d:e:f:g:h
+
+       o   IPv6: compressed format a::b
+
+       o   IPv6: IPv4 mapped IPv6 format a:b:c:d:e:f:w.x.y.z
+
+       o   IPv6: compressed IPv4 mapped IPv6 format a::b:w.x.y.z
+
+       o   MAC: Separated by '-' aa-bb-cc-dd-ee-ff
+
+       o   MAC: Separated by ':' aa:bb:cc:dd:ee:ff
+
+
+
+NOTE ON LARGE FILES
+       Depending on how large the file is, this utility can take a  long  time
+       to  complete:  for  a  512MB file with (5 million) entries it took just
+       over 2 min -- YMMV depending on your hardware
+
+
+
+				  August 2013			 IP_EXTRACT(1)
