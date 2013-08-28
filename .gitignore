@@ -21,4 +21,4 @@ ip_addrs.txt
 TODO.md
 .idea
 *.iml
-lib/sns_utils/man/*
+lib/sns_utils/man
