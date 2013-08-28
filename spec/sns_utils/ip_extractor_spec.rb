@@ -8,7 +8,6 @@ describe SnsUtils::IpExtractor do
       extractor = SnsUtils::IpExtractor.new([file])
       extractor.run
 
-      #pp extractor.ip_addrs
       expect(extractor.ip_addrs).to have(5).entries
     end
   end
@@ -20,7 +19,6 @@ describe SnsUtils::IpExtractor do
       extractor = SnsUtils::IpExtractor.new([file])
       extractor.run
 
-      #pp extractor.ip_addrs
       expect(extractor.ip_addrs).to have(61).entries
     end
   end
@@ -32,7 +30,6 @@ describe SnsUtils::IpExtractor do
       extractor = SnsUtils::IpExtractor.new([file])
       extractor.run
 
-      #pp extractor.mac_addrs
       expect(extractor.mac_addrs).to have(2).entries
     end
   end
@@ -44,10 +41,8 @@ describe SnsUtils::IpExtractor do
       extractor = SnsUtils::IpExtractor.new([file])
       extractor.run
 
-      pp extractor.ip_addrs
       expect(extractor.ip_addrs).to have(5).entries
       expect(extractor.mac_addrs).to have(1).entry
     end
   end
-
 end

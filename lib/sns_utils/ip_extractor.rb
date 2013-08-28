@@ -14,22 +14,35 @@ module SnsUtils
     end
 
     def run
+      extract_addresses
+      write_ip_file
+      write_mac_file
+    end
+
+    private
+
+    def extract_addresses
       File.open(file, 'r').each do |line|
         line.scan(IP_REGEX).each do |match|
           log_ip(match[0].to_s.strip!)
         end
       end
-
-      write_ip_addr_file
-      write_mac_addr_file
     end
 
-    private
-
-    def write_ip_addr_file
+    def write_ip_file
+      ips = ip_addrs.select { |_,count| count >= options.ip_threshold }
+      write_file(::SnsUtils.ip_out_file, ips.keys)
     end
 
-    def write_mac_addr_file
+    def write_mac_file
+      macs = mac_addrs.select { |_,count| count >= options.mac_threshold }
+      write_file(::SnsUtils.mac_out_file, macs.keys)
+    end
+
+    def write_file(file, entries)
+      File.open(file, "w+") do |f|
+        entries.each { |e| f.puts(e) }
+      end
     end
 
     def log_ip(ip)
