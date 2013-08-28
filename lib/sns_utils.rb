@@ -30,12 +30,6 @@ module SnsUtils
 end
 
 
-# time wc xlarge.log =>
-# 10000000 360000000 3480000000 xlarge.log
-#
-#real	0m11.110s
-#user	0m10.621s
-#sys	0m0.489s
 
 if $PROGRAM_NAME == __FILE__
   line = "blah blah blah VALID xxxx<<> 2001:0000:1234:0000:0000:C1C0:ABCD:0876 VALID >>> blah blah blah VALID 00:A0:C9:14:C8:29"
