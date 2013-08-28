@@ -41,6 +41,6 @@ end
 
 if $PROGRAM_NAME == __FILE__
   line = "9.9.9 blah blah blah VALID 0.0.0.0 xxxx<<> 2001:0000:1234:0000:0000:C1C0:ABCD:0876 VALID >>> blah blah blah VALID 00:A0:C9:14:C8:29"
-  ::SnsUtils.create_test_log(line, 100_000)
+  ::SnsUtils.create_test_log(line, 10_000_000)
 end
 
