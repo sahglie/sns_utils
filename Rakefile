@@ -25,8 +25,8 @@ namespace :man do
 
   desc "Clean up from the built man pages"
   task :clean do
-    rm "man/ip_extract"
-    rm "man/ip_extract.txt"
+    rm "man/ip_extract.1"
+    rm "man/ip_extract.1.txt"
   end
 end
 
