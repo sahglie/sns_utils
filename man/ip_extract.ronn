@@ -1,4 +1,4 @@
-ip_extract(1) -- IP/Mac Address Parser
+ip_extract(1) -- IP/Mac Address Extractor
 =======================================
 
 ## SYNOPSIS
@@ -7,8 +7,8 @@ ip_extract(1) -- IP/Mac Address Parser
 
 ## DESCRIPTION
 
-Finds IP and MAC addresses in FILE.  Addresses with repeat occurrences greater
-than or equal to a given threshold are logged to ip_addrs.txt and mac_addrs.txt
+Find and extract IP and MAC addresses in FILE.  Addresses with repeat occurrences
+greater than or equal to a given threshold are logged to ip_addrs.txt and mac_addrs.txt
 respectively.  By default, MAC addresses that occur at least 8 times are logged
 and IP addresses that occur at least 10 times are logged.
 
@@ -21,7 +21,8 @@ and IP addresses that occur at least 10 times are logged.
   Set the IP address threshold--default is 10
 
 * `-d`:
-  Specify directory where log files are written, defaults to current directory
+  Specify directory where MAC and IP output logs should be written to--defaults to
+  current directory
 
 ## FORMATS
 Matches the following address formats:

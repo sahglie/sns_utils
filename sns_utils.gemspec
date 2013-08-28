@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = SnsUtils::VERSION
   spec.authors       = ["sahglie"]
   spec.email         = ["sahglie@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Find and extract IP and MAC addresses in FILE}
+  spec.summary       = %q{Find and extract IP and MAC addresses in FILE}
   spec.homepage      = ""
   spec.license       = "MIT"
 

@@ -1,1 +1,33 @@
 require "bundler/gem_tasks"
+require 'ronn'
+
+
+namespace :man do
+  directory "lib/sns_utils/man"
+
+  Dir["man/*.ronn"].each do |ronn|
+    basename = File.basename(ronn, ".ronn")
+    roff = "lib/sns_utils/man/#{basename}"
+
+    file roff => ["lib/sns_utils/man", ronn] do
+      sh "#{Gem.ruby} -S ronn --roff --pipe #{ronn} > #{roff}"
+    end
+
+    file "#{roff}.txt" => roff do
+      sh "groff -Wall -mtty-char -mandoc -Tascii #{roff} | col -b > #{roff}.txt"
+    end
+
+    task :build_all_pages => "#{roff}.txt"
+  end
+
+  desc "Build the man pages"
+  task :build => "man:build_all_pages"
+
+  desc "Clean up from the built man pages"
+  task :clean do
+    rm_rf "lib/sns_utils/man"
+  end
+end
+
+task :build => ["man:clean", "man:build"]
+task :release => ["man:clean", "man:build"]
