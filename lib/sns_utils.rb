@@ -17,11 +17,11 @@ module SnsUtils
   end
 
   def self.ip_out_file
-    "ip_addr_file.txt"
+    "ip_addrs.txt"
   end
 
   def self.mac_out_file
-    "mac_addr_file.txt"
+    "mac_addrs.txt"
   end
 
   def self.create_test_log(line, rep=1_000)

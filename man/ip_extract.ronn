@@ -1,0 +1,20 @@
+ip_extract(1) -- IP/Mac Address Parser
+=======================================
+
+## SYNOPSIS
+
+`ip_extract` FILE [-m NUM] [-i NUM]
+
+## DESCRIPTION
+
+Extracts IP and MAC addresses from provided file.  Addresses that
+occur above or equal to a given threshold are logged to ip_addrs.txt
+and mac_addrs.txt
+
+## OPTIONS
+
+* `-m`:
+  Set the MAC address threshold--default is 8
+
+* `-i`:
+  Set the IP address threshold--default is 10
