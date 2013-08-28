@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/sns_utils"
+
+begin
+  SnsUtils::IpExtractor.new(ARGV).run
+rescue Errno::ENOENT => err
+  abort "ip_extract: #{err.message}"
+rescue OptionParser::InvalidOption, OptionParser::InvalidArgument => err
+  abort "usage: file [-m mac_threshold] [-i ip_threshold]"
+end

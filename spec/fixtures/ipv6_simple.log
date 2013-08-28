@@ -1,0 +1,172 @@
+# NOTE, some of the following IPs are duplicates, just in
+# a different format so the 81 valid ips map to 61 valid
+# ips.
+
+# valid 2001:0000:1234:0000:0000:C1C0:ABCD:0876
+# valid 3ffe:0b00:0000:0000:0001:0000:0000:000a
+# valid FF02:0000:0000:0000:0000:0000:0000:0001
+# valid 0000:0000:0000:0000:0000:0000:0000:0001
+# valid 0000:0000:0000:0000:0000:0000:0000:0000
+# valid ::ffff:192.168.1.26
+# valid 2::10
+# valid ff02::1
+# valid fe80::
+# valid 2002::
+# valid 2001:db8::
+# valid 2001:0db8:1234::
+# valid ::ffff:0:0
+# valid ::1
+# valid ::ffff:192.168.1.1
+# valid 1:2:3:4:5:6:7:8
+# valid 1:2:3:4:5:6::8
+# valid 1:2:3:4:5::8
+# valid 1:2:3:4::8
+# valid 1:2:3::8
+# valid 1:2::8
+# valid 1::8
+# valid 1::2:3:4:5:6:7
+# valid 1::2:3:4:5:6
+# valid 1::2:3:4:5
+# valid 1::2:3:4
+# valid 1::2:3
+# valid 1::8
+# valid ::2:3:4:5:6:7:8
+# valid ::2:3:4:5:6:7
+# valid ::2:3:4:5:6
+# valid ::2:3:4:5
+# valid ::2:3:4
+# valid ::2:3
+# valid ::8
+# valid 1:2:3:4:5:6::
+# valid 1:2:3:4:5::
+# valid 1:2:3:4::
+# valid 1:2:3::
+# valid 1:2::
+# valid 1::
+# valid 1:2:3:4:5::7:8
+# valid 1:2:3:4::7:8
+# valid 1:2:3::7:8
+# valid 1:2::7:8
+# valid 1::7:8
+# valid 1:2:3:4:5:6:1.2.3.4
+# valid 1:2:3:4:5::1.2.3.4
+# valid 1:2:3:4::1.2.3.4
+# valid 1:2:3::1.2.3.4
+# valid 1:2::1.2.3.4
+# valid 1::1.2.3.4
+# valid 1:2:3:4::5:1.2.3.4
+# valid 1:2:3::5:1.2.3.4
+# valid 1:2::5:1.2.3.4
+# valid 1::5:1.2.3.4
+# valid 1::5:11.22.33.44
+# valid  2001:0000:1234:0000:0000:C1C0:ABCD:0876
+# valid  2001:0000:1234:0000:0000:C1C0:ABCD:0876  
+# valid fe80::217:f2ff:254.7.237.98
+# valid fe80::217:f2ff:fe07:ed62
+# valid 2001:DB8:0:0:8:800:200C:417A # unicast, full
+# valid FF01:0:0:0:0:0:0:101 # multicast, full
+# valid 0:0:0:0:0:0:0:1 # loopback, full
+# valid 0:0:0:0:0:0:0:0 # unspecified, full
+# valid 2001:DB8::8:800:200C:417A # unicast, compressed
+# valid FF01::101 # multicast, compressed
+# valid ::1 # loopback, compressed, non-routable
+# valid :: # unspecified, compressed, non-routable
+# valid 0:0:0:0:0:0:13.1.68.3 # IPv4-compatible IPv6 address, full, deprecated
+# valid 0:0:0:0:0:FFFF:129.144.52.38 # IPv4-mapped IPv6 address, full
+# valid ::13.1.68.3 # IPv4-compatible IPv6 address, compressed, deprecated
+# valid ::FFFF:129.144.52.38 # IPv4-mapped IPv6 address, compressed
+# valid fe80:0000:0000:0000:0204:61ff:fe9d:f156
+# valid fe80:0:0:0:204:61ff:fe9d:f156
+# valid fe80::204:61ff:fe9d:f156
+# valid fe80:0:0:0:204:61ff:254.157.241.86
+# valid fe80::204:61ff:254.157.241.86
+# valid ::1
+# valid fe80::
+# valid fe80::1
+
+# not valid 02001:0000:1234:0000:0000:C1C0:ABCD:0876      # extra 0 not allowed!
+# not valid 2001:0000:1234:0000:00001:C1C0:ABCD:0876      # extra 0 not allowed!
+# not valid  2001:0000:1234:0000:0000:C1C0:ABCD:0876  0
+# not valid 2001:0000:1234: 0000:0000:C1C0:ABCD:0876
+# not valid 3ffe:0b00:0000:0001:0000:0000:000a
+# not valid FF02:0000:0000:0000:0000:0000:0000:0000:0001
+# not valid 3ffe:b00::1::a
+# not valid ::1111:2222:3333:4444:5555:6666::
+# not valid 1:2:3::4:5::7:8
+# not valid 12345::6:7:8
+# not valid 1::5:400.2.3.4
+# not valid 1::5:260.2.3.4
+# not valid 1::5:256.2.3.4
+# not valid 1::5:1.256.3.4
+# not valid 1::5:1.2.256.4
+# not valid 1::5:1.2.3.256
+# not valid 1::5:300.2.3.4
+# not valid 1::5:1.300.3.4
+# not valid 1::5:1.2.300.4
+# not valid 1::5:1.2.3.300
+# not valid 1::5:900.2.3.4
+# not valid 1::5:1.900.3.4
+# not valid 1::5:1.2.900.4
+# not valid 1::5:1.2.3.900
+# not valid 1::5:300.300.300.300
+# not valid 1::5:3000.30.30.30
+# not valid 1::400.2.3.4
+# not valid 1::260.2.3.4
+# not valid 1::256.2.3.4
+# not valid 1::1.256.3.4
+# not valid 1::1.2.256.4
+# not valid 1::1.2.3.256
+# not valid 1::300.2.3.4
+# not valid 1::1.300.3.4
+# not valid 1::1.2.300.4
+# not valid 1::1.2.3.300
+# not valid 1::900.2.3.4
+# not valid 1::1.900.3.4
+# not valid 1::1.2.900.4
+# not valid 1::1.2.3.900
+# not valid 1::300.300.300.300
+# not valid 1::3000.30.30.30
+# not valid ::400.2.3.4
+# not valid ::260.2.3.4
+# not valid ::256.2.3.4
+# not valid ::1.256.3.4
+# not valid ::1.2.256.4
+# not valid ::1.2.3.256
+# not valid ::300.2.3.4
+# not valid ::1.300.3.4
+# not valid ::1.2.300.4
+# not valid ::1.2.3.300
+# not valid ::900.2.3.4
+# not valid ::1.900.3.4
+# not valid ::1.2.900.4
+# not valid ::1.2.3.900
+# not valid ::300.300.300.300
+# not valid ::3000.30.30.30
+# not valid 2001:DB8:0:0:8:800:200C:417A:221 # unicast, full
+# not valid FF01::101::2 # multicast, compressed
+# not valid  # nothing
+# Not sure about this one; apparently some systems treat the leading "0" in ".086" as the start of an octal number
+# not valid fe80:0000:0000:0000:0204:61ff:254.157.241.086
+# not valid :
+# not valid 1111:2222:3333:4444::5555:
+# not valid 1111:2222:3333::5555:
+# not valid 1111:2222::5555:
+# not valid 1111::5555:
+# not valid ::5555:
+# not valid :::
+# not valid 1111:
+# not valid :
+# not valid :1111:2222:3333:4444::5555
+# not valid :1111:2222:3333::5555
+# not valid :1111:2222::5555
+# not valid :1111::5555
+# not valid :::5555
+# not valid :::
+# not valid 1.2.3.4:1111:2222:3333:4444::5555
+# not valid 1.2.3.4:1111:2222:3333::5555
+# not valid 1.2.3.4:1111:2222::5555
+# not valid 1.2.3.4:1111::5555
+# not valid 1.2.3.4::5555
+# not valid 1.2.3.4::
+# not valid 2001:1:1:1:1:1:255Z255X255Y255
+# not valid ::ffff:192x168.1.26

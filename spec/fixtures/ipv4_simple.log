@@ -1,0 +1,11 @@
+# valid 0.0.0.0
+# valid 1.1.1.1
+# valid 111.111.111.111
+# valid 111.111.111.1
+# valid 99.1.1.1
+
+# invalid 1.1.1
+# invalid 1
+# invalid 1.1
+# invalid 192.168.1.500
+# invalid 999.1.1.1

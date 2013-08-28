@@ -1,0 +1,6 @@
+# valid 00:A0:C9:14:C8:29
+# valid 00:00:00:00:00:00
+
+# invalid 00:00:00:00:00
+# invalid A0:C9:14:C8:29
+# invalid 00:A:C9:14:C8:29
