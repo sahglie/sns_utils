@@ -33,7 +33,7 @@ Or install it yourself as:
 
 ### Grep Baseline Perf
 
-The following grep commands try to match only IPv6 addresses using the
+The following grep commands try to match only IPv6 and IPv4 addresses using the
 same regex as the addrex utility
 
 xlarge.log is 5GB with 50 million lines
@@ -45,8 +45,8 @@ xlarge.log is 5GB with 50 million lines
 xlarge.log is 514MB with 5 million lines
 
     time grep -c  -E '\b(?:(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?::(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?|(?:[0-9A-Fa-f]{1,4}:){6,6}\d+\.\d+\.\d+\.\d+|(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?::(?:[0-9A-Fa-f]{1,4}:)*\d+\.\d+\.\d+\.\d+)\b' spec/fixtures/xlarge.log
-    => real 1m12.063s
-       user 1m11.956s
+    => real 4m12.063s
+       user 4m10.956s
        sys  0m0.108s
 
 ## ip_extract
