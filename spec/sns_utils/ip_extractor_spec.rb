@@ -44,11 +44,26 @@ describe SnsUtils::IpExtractor do
   end
 
   context "Occurrence threshold options" do
-    let(:file) { fixture_path("ipv4_ipv6_mac.log") }
+    let(:file) { fixture_path("thresholds.log") }
 
-    it "has a default IP threshold"
-    it "adjusts IP threshold"
-    it "has a default MAC threshold"
-    it "adjusts MAC threshold"
+    it "has default IP and MAC threshold" do
+      extractor = SnsUtils::IpExtractor.new([file])
+      extractor.run
+
+      extractor.ip_addrs_log.should have(1).entry
+      extractor.mac_addrs_log.should have(1).entry
+    end
+
+    it "adjusts IP and MAC threshold" do
+      extractor = SnsUtils::IpExtractor.new([file, "-i", "5", "-m", "5"])
+      extractor.run
+      extractor.ip_addrs_log.should have(2).entries
+      extractor.mac_addrs_log.should have(2).entries
+
+      extractor = SnsUtils::IpExtractor.new([file, "-i", "11", "-m", "11"])
+      extractor.run
+      extractor.ip_addrs_log.should be_empty
+      extractor.mac_addrs_log.should be_empty
+    end
   end
 end

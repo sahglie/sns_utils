@@ -1,0 +1,35 @@
+# IPv4 occurs 10 times
+# valid 1.1.1.1
+# valid 1.1.1.1
+# valid 1.1.1.1
+# valid 1.1.1.1
+# valid 1.1.1.1
+# valid 1.1.1.1
+# valid 1.1.1.1
+# valid 1.1.1.1
+# valid 1.1.1.1
+# valid 1.1.1.1
+
+# MAC occurs 8 times
+# valid 00:A0:C9:14:C8:29
+# valid 00:A0:C9:14:C8:29
+# valid 00:A0:C9:14:C8:29
+# valid 00:A0:C9:14:C8:29
+# valid 00:A0:C9:14:C8:29
+# valid 00:A0:C9:14:C8:29
+# valid 00:A0:C9:14:C8:29
+# valid 00:A0:C9:14:C8:29
+
+# IPv4 occurs 5 times
+# 0.0.0.0
+# 0.0.0.0
+# 0.0.0.0
+# 0.0.0.0
+# 0.0.0.0
+
+# IPv6 occurs 5 times
+# valid 00:00:00:00:00:00
+# valid 00:00:00:00:00:00
+# valid 00:00:00:00:00:00
+# valid 00:00:00:00:00:00
+# valid 00:00:00:00:00:00

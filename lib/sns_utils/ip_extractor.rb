@@ -1,6 +1,7 @@
 module SnsUtils
   class IpExtractor
-    attr_accessor :file, :ip_addrs, :mac_addrs, :options
+    attr_accessor :file, :options
+    attr_accessor :ip_addrs, :ip_addrs_log, :mac_addrs, :mac_addrs_log
 
     IPV4_REGEX = ::SnsUtils::IPv4::REGEX
     IPV6_REGEX = ::SnsUtils::IPv6::REGEX
@@ -23,20 +24,18 @@ module SnsUtils
 
     def extract_addresses
       File.open(file, 'r').each do |line|
-        line.scan(IP_REGEX).each do |md|
-          log_addr(md[0].to_s.strip!)
-        end
+        line.scan(IP_REGEX).each { |md| log_addr(md[0].to_s.strip!) }
       end
     end
 
     def log_ip_addrs
-      ips = ip_addrs.select { |_, count| count >= options.ip_threshold }
-      write_file(::SnsUtils.ip_out_file, ips.keys)
+      self.ip_addrs_log  = ip_addrs.select { |_, count| count >= options.ip_threshold }.keys
+      write_file(::SnsUtils.ip_out_file, ip_addrs_log)
     end
 
     def log_mac_addrs
-      macs = mac_addrs.select { |_, count| count >= options.mac_threshold }
-      write_file(::SnsUtils.mac_out_file, macs.keys)
+      self.mac_addrs_log = mac_addrs.select { |_, count| count >= options.mac_threshold }.keys
+      write_file(::SnsUtils.mac_out_file, mac_addrs_log)
     end
 
     def write_file(file, entries)
