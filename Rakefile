@@ -25,8 +25,8 @@ namespace :man do
 
   desc "Clean up from the built man pages"
   task :clean do
-    rm "man/ipex.1"
-    rm "man/ipex.1.txt"
+    rm "man/addrex.1"
+    rm "man/addrex.1.txt"
   end
 end
 

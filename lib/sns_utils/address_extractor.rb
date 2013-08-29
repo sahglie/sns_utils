@@ -1,12 +1,10 @@
 module SnsUtils
-  class IpExtractor
+  class AddressExtractor
     attr_accessor :file, :options
     attr_accessor :ip_addrs, :ip_addrs_log, :mac_addrs, :mac_addrs_log
 
     IP_REGEX = /
-        #{::SnsUtils::IPv4::REGEX} |
-        #{::SnsUtils::IPv6::REGEX} |
-        #{::SnsUtils::MAC::REGEX}
+        #{::SnsUtils::IPv4::REGEX} | #{::SnsUtils::IPv6::REGEX} | #{::SnsUtils::MAC::REGEX}
     /xi
 
     def initialize(argv)

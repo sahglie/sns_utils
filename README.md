@@ -52,7 +52,7 @@ xlarge.log is 514MB with 5 million lines
 
 xlarge.log is 514MB with 5 million lines
 
-    ip_extract spec/fixtures/xlarge.log
+    addrex spec/fixtures/xlarge.log
     => real 2m18.938s
        user 2m18.356s
        sys  0m0.578s

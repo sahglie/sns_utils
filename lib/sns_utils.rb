@@ -7,7 +7,7 @@ require 'ostruct'
 require_relative 'sns_utils/ipv4'
 require_relative 'sns_utils/ipv6'
 require_relative 'sns_utils/mac'
-require_relative "sns_utils/ip_extractor"
+require_relative "sns_utils/address_extractor"
 require_relative "sns_utils/version"
 
 

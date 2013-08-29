@@ -6,9 +6,9 @@ Signal.trap("INT") { exit 1 }
 require_relative "../lib/sns_utils"
 
 begin
-  SnsUtils::IpExtractor.new(ARGV).run
+  SnsUtils::AddressExtractor.new(ARGV).run
 rescue Errno::ENOENT => err
-  abort "ipex: #{err.message}"
+  abort "addrex: #{err.message}"
 rescue OptionParser::InvalidOption, OptionParser::InvalidArgument => err
-  abort "usage: ipex FILE [-m MAC_THRESHOLD] [-i IP_THRESHOLD] [-d OUTPUT_DIR]"
+  abort "usage: addrex FILE [-m MAC_THRESHOLD] [-i IP_THRESHOLD] [-d OUTPUT_DIR]"
 end
