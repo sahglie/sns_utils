@@ -1,6 +1,6 @@
 # SnsUtils
 
-TODO: Write a gem description
+Find and extract IP and MAC addresses in FILE based on repeated occurrences.
 
 ## Installation
 
@@ -17,8 +17,8 @@ Or install it yourself as:
     $ gem install sns_utils
 
 ## Usage
-
-TODO: Write usage instructions here
+    $ gem install gem-man (if you haven't already)
+    $ gem man sns_utils
 
 ## Contributing
 
@@ -29,9 +29,9 @@ TODO: Write usage instructions here
 5. Create new Pull Request
 
 
-# Notes on Performance
+## Performance Notes
 
-## Grep Baseline Perf
+### Grep Baseline Perf
 
 xlarge.log is 5GB with 50 million lines
 
