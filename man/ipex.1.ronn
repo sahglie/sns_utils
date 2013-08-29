@@ -3,7 +3,7 @@ ipex(1) -- IP/Mac Address Extractor
 
 ## SYNOPSIS
 
-`ipex` FILE [-m THRESHOLD] [-i THRESHOLD]
+`ipex FILE [-m THRESHOLD] [-i THRESHOLD] [-d OUTPUT_DIR]`
 
 ## DESCRIPTION
 
@@ -16,13 +16,13 @@ as case insensitive.
 ## OPTIONS
 
 * `-m`:
-  Set the MAC address threshold--default is 8
+  Set the MAC address threshold, defaults to 8
 
 * `-i`:
-  Set the IP address threshold--default is 10
+  Set the IP address threshold, defaults to 10
 
 * `-d`:
-  Specify directory where MAC and IP output logs should be written to--defaults to
+  Specify directory where MAC and IP output files are written to, defaults to
   current directory
 
 ## FORMATS

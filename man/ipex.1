@@ -7,7 +7,7 @@
 \fBipex\fR \- IP/Mac Address Extractor
 .
 .SH "SYNOPSIS"
-\fBipex\fR FILE [\-m THRESHOLD] [\-i THRESHOLD]
+\fBipex FILE [\-m THRESHOLD] [\-i THRESHOLD] [\-d OUTPUT_DIR]\fR
 .
 .SH "DESCRIPTION"
 Find and extract IP and MAC addresses in FILE\. Addresses with repeat occurrences greater than or equal to a given threshold are logged to ip_addrs\.txt and mac_addrs\.txt respectively\. By default, MAC addresses that occur at least 8 times are logged and IP addresses that occur at least 10 times are logged\. All matches are performed as case insensitive\.
@@ -16,15 +16,15 @@ Find and extract IP and MAC addresses in FILE\. Addresses with repeat occurrence
 .
 .TP
 \fB\-m\fR
-Set the MAC address threshold\-\-default is 8
+Set the MAC address threshold, defaults to 8
 .
 .TP
 \fB\-i\fR
-Set the IP address threshold\-\-default is 10
+Set the IP address threshold, defaults to 10
 .
 .TP
 \fB\-d\fR
-Specify directory where MAC and IP output logs should be written to\-\-defaults to current directory
+Specify directory where MAC and IP output files should be written to, defaults to current directory
 .
 .SH "FORMATS"
 Matches the following address formats:

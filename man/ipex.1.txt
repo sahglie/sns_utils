@@ -6,7 +6,7 @@ NAME
        ipex - IP/Mac Address Extractor
 
 SYNOPSIS
-       ipex FILE [-m THRESHOLD] [-i THRESHOLD]
+       ipex FILE [-m THRESHOLD] [-i THRESHOLD] [-d OUTPUT_DIR]
 
 DESCRIPTION
        Find  and  extract  IP and MAC addresses in FILE. Addresses with repeat
@@ -17,12 +17,12 @@ DESCRIPTION
        tive.
 
 OPTIONS
-       -m     Set the MAC address threshold--default is 8
+       -m     Set the MAC address threshold, defaults to 8
 
-       -i     Set the IP address threshold--default is 10
+       -i     Set the IP address threshold, defaults to 10
 
-       -d     Specify directory where MAC and IP output logs should be written
-	      to--defaults to current directory
+       -d     Specify directory where MAC and IP output files should be  writ-
+	      ten to, defaults to current directory
 
 FORMATS
        Matches the following address formats:

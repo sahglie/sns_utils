@@ -79,4 +79,25 @@ describe SnsUtils::IpExtractor do
       extractor.mac_addrs_log.should be_empty
     end
   end
+
+  context "Output dir option" do
+    let(:file) { fixture_path("ipv4_simple.log") }
+    let(:tmp_dir) { "#{::SnsUtils.root}/tmp" }
+
+    after(:all) do
+      File.delete("#{tmp_dir}/#{::SnsUtils.ip_out_file}")
+      File.delete("#{tmp_dir}/#{::SnsUtils.mac_out_file}")
+    end
+
+    it "configures custom output directory" do
+      options = SnsUtils::IpExtractor.new([file, "-d", tmp_dir]).options
+      options.output_dir.should eql(tmp_dir)
+    end
+
+    it "writes to custom output directory" do
+      SnsUtils::IpExtractor.new([file, "-d", tmp_dir]).run
+      File.exists?("#{tmp_dir}/#{::SnsUtils.ip_out_file}").should be_true
+      File.exists?("#{tmp_dir}/#{::SnsUtils.mac_out_file}").should be_true
+    end
+  end
 end

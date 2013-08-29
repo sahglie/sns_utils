@@ -40,9 +40,14 @@ module SnsUtils
     end
 
     def write_file(file, entries)
-      File.open(file, "w+") do |f|
+      file_path = output_dir(options.output_dir, file)
+      File.open(file_path, "w+") do |f|
         entries.each { |e| f.puts(e) }
       end
+    end
+
+    def output_dir(dir, file)
+      dir ? File.expand_path(File.join(dir, file)) : file
     end
 
     def log_addr(ip)
@@ -58,6 +63,7 @@ module SnsUtils
       options = OpenStruct.new
       options.mac_threshold = 8
       options.ip_threshold = 10
+      options.output_dir = nil
 
       parser = OptionParser.new do |opts|
         opts.on("-m N", Integer, "MAC address threshold, logs entries with N <= occurrences") do |n|
@@ -68,9 +74,9 @@ module SnsUtils
           options.ip_threshold = Integer(n).abs
         end
 
-        #opts.on("-d N", Integer, "IP address threshold, logs entries with N =< occurrences") do |n|
-        #  options.ip_threshold = Integer(n).abs
-        #end
+        opts.on("-d OUTPUT_DIR", String, "Dir used to write output files") do |dir|
+          options.output_dir = dir
+        end
       end
 
       parser.parse(argv)

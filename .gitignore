@@ -18,6 +18,6 @@ tmp
 spec/fixtures/xlarge.log
 mac_addrs.txt
 ip_addrs.txt
-TODO.md
+SOLUTION.txt
 .idea
 *.iml
