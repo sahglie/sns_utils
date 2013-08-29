@@ -43,18 +43,18 @@ xlarge.log is 5GB with 50 million lines
 
 xlarge.log is 514MB with 5 million lines
 
-`time grep -c  -E '(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}' spec/fixtures/xlarge.log`
-=> real 1m12.063s
-   user 1m11.956s
-   sys  0m0.108s
+    time grep -c  -E '(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}' spec/fixtures/xlarge.log
+    => real 1m12.063s
+       user 1m11.956s
+       sys  0m0.108s
 
 ## ip_extract
 
 xlarge.log is 514MB with 5 million lines
 
-`ip_extract spec/fixtures/xlarge.log`
-=> real 2m18.938s
-   user 2m18.356s
-   sys  0m0.578s
+    ip_extract spec/fixtures/xlarge.log
+    => real 2m18.938s
+       user 2m18.356s
+       sys  0m0.578s
 
 
