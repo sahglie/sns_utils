@@ -9,6 +9,6 @@ begin
   SnsUtils::AddressExtractor.new(ARGV).run
 rescue Errno::ENOENT => err
   abort "addrex: #{err.message}"
-rescue OptionParser::InvalidOption, OptionParser::InvalidArgument => err
+rescue OptionParser::InvalidOption, OptionParser::InvalidArgument
   abort "usage: addrex FILE [-m MAC_THRESHOLD] [-i IP_THRESHOLD] [-d OUTPUT_DIR]"
 end
