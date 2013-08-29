@@ -46,6 +46,14 @@ describe SnsUtils::IpExtractor do
   context "Occurrence threshold options" do
     let(:file) { fixture_path("thresholds.log") }
 
+    it "raises error for invalid thresholds" do
+      expect { SnsUtils::IpExtractor.new([file, "-i", "x"]) }.to \
+          raise_error(OptionParser::InvalidArgument)
+
+      expect { SnsUtils::IpExtractor.new([file, "-m", "x"]) }.to \
+          raise_error(OptionParser::InvalidArgument)
+    end
+
     it "has default IP and MAC threshold" do
       extractor = SnsUtils::IpExtractor.new([file])
       extractor.options.mac_threshold.should eql(8)
