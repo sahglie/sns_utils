@@ -35,10 +35,10 @@ Or install it yourself as:
 
 xlarge.log is 5GB with 50 million lines
 
-`time grep -c  -E '(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}' spec/fixtures/xlarge.log`
-=> real 12m0.658s
-   user 11m59.672s
-   sys  0m0.991s
+    time grep -c  -E '(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}' spec/fixtures/xlarge.log
+    => real 12m0.658s
+       user 11m59.672s
+       sys  0m0.991s
 
 
 xlarge.log is 514MB with 5 million lines
