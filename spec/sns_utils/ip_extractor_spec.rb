@@ -48,13 +48,25 @@ describe SnsUtils::IpExtractor do
 
     it "has default IP and MAC threshold" do
       extractor = SnsUtils::IpExtractor.new([file])
+      extractor.options.mac_threshold.should eql(8)
+      extractor.options.ip_threshold.should eql(10)
+    end
+
+    it "uses default IP and MAC threshold" do
+      extractor = SnsUtils::IpExtractor.new([file])
       extractor.run
 
       extractor.ip_addrs_log.should have(1).entry
       extractor.mac_addrs_log.should have(1).entry
     end
 
-    it "adjusts IP and MAC threshold" do
+    it "adjusts default IP and MAC threshold" do
+      extractor = SnsUtils::IpExtractor.new([file, "-i", "5", "-m", "4"])
+      extractor.options.mac_threshold.should eql(4)
+      extractor.options.ip_threshold.should eql(5)
+    end
+
+    it "uses adjusted IP and MAC threshold" do
       extractor = SnsUtils::IpExtractor.new([file, "-i", "5", "-m", "5"])
       extractor.run
       extractor.ip_addrs_log.should have(2).entries
