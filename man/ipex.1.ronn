@@ -10,7 +10,8 @@ ipex(1) -- IP/Mac Address Extractor
 Find and extract IP and MAC addresses in FILE.  Addresses with repeat occurrences
 greater than or equal to a given threshold are logged to ip_addrs.txt and mac_addrs.txt
 respectively.  By default, MAC addresses that occur at least 8 times are logged
-and IP addresses that occur at least 10 times are logged.
+and IP addresses that occur at least 10 times are logged. All matches are performed
+as case insensitive.
 
 ## OPTIONS
 
