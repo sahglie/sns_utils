@@ -21,8 +21,8 @@ OPTIONS
 
        -i     Set the IP address threshold, defaults to 10
 
-       -d     Specify directory where MAC and IP output files should be  writ-
-	      ten to, defaults to current directory
+       -d     Specify directory where MAC and IP output files are written  to,
+	      defaults to current directory
 
 FORMATS
        Matches the following address formats:
