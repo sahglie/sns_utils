@@ -5,8 +5,7 @@ describe SnsUtils::IpExtractor do
     let(:file) { fixture_path("ipv4_simple.log") }
 
     it "finds valid entries" do
-      extractor = SnsUtils::IpExtractor.new([file])
-      extractor.run
+      extractor = SnsUtils::IpExtractor.new([file]).run
       extractor.ip_addrs.should have(5).entries
     end
   end
@@ -15,8 +14,7 @@ describe SnsUtils::IpExtractor do
     let(:file) { fixture_path("ipv6_simple.log") }
 
     it "finds valid entries" do
-      extractor = SnsUtils::IpExtractor.new([file])
-      extractor.run
+      extractor = SnsUtils::IpExtractor.new([file]).run
       extractor.ip_addrs.should have(61).entries
     end
   end
@@ -25,8 +23,7 @@ describe SnsUtils::IpExtractor do
     let(:file) { fixture_path("mac_simple.log") }
 
     it "finds valid entries" do
-      extractor = SnsUtils::IpExtractor.new([file])
-      extractor.run
+      extractor = SnsUtils::IpExtractor.new([file]).run
       extractor.mac_addrs.should have(2).entries
     end
   end
@@ -35,9 +32,7 @@ describe SnsUtils::IpExtractor do
     let(:file) { fixture_path("ipv4_ipv6_mac.log") }
 
     it "finds valid entries" do
-      extractor = SnsUtils::IpExtractor.new([file])
-      extractor.run
-
+      extractor = SnsUtils::IpExtractor.new([file]).run
       extractor.ip_addrs.should have(5).entries
       extractor.mac_addrs.should have(1).entry
     end
@@ -75,13 +70,11 @@ describe SnsUtils::IpExtractor do
     end
 
     it "uses adjusted IP and MAC threshold" do
-      extractor = SnsUtils::IpExtractor.new([file, "-i", "5", "-m", "5"])
-      extractor.run
+      extractor = SnsUtils::IpExtractor.new([file, "-i", "5", "-m", "5"]).run
       extractor.ip_addrs_log.should have(2).entries
       extractor.mac_addrs_log.should have(2).entries
 
-      extractor = SnsUtils::IpExtractor.new([file, "-i", "11", "-m", "11"])
-      extractor.run
+      extractor = SnsUtils::IpExtractor.new([file, "-i", "11", "-m", "11"]).run
       extractor.ip_addrs_log.should be_empty
       extractor.mac_addrs_log.should be_empty
     end

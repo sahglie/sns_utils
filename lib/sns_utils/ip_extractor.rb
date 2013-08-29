@@ -18,6 +18,7 @@ module SnsUtils
       extract_addresses
       log_ip_addrs
       log_mac_addrs
+      self
     end
 
     private
