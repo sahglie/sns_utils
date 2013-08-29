@@ -6,7 +6,7 @@ module SnsUtils
     IPV4_REGEX = ::SnsUtils::IPv4::REGEX
     IPV6_REGEX = ::SnsUtils::IPv6::REGEX
     MAC_REGEX = ::SnsUtils::MAC::REGEX
-    IP_REGEX = / ((?: ^|\s) (?: #{IPV6_REGEX} | #{IPV4_REGEX} | #{MAC_REGEX}) (?: \s|$)) /xi
+    IP_REGEX = / ((?: ^|\s|[a-zA-Z]) (?: #{IPV6_REGEX} | #{IPV4_REGEX} | #{MAC_REGEX})) /xi
 
     def initialize(argv)
       @file, @options = parse_options(argv)

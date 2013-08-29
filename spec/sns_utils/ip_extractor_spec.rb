@@ -5,8 +5,8 @@ describe SnsUtils::IpExtractor do
     let(:file) { fixture_path("ipv4_simple.log") }
 
     it "finds valid entries" do
-      extractor = SnsUtils::IpExtractor.new([file]).run
-      extractor.ip_addrs.should have(5).entries
+      ipex = SnsUtils::IpExtractor.new([file]).run
+      ipex.ip_addrs.should have(5).entries
     end
   end
 
@@ -14,8 +14,8 @@ describe SnsUtils::IpExtractor do
     let(:file) { fixture_path("ipv6_simple.log") }
 
     it "finds valid entries" do
-      extractor = SnsUtils::IpExtractor.new([file]).run
-      extractor.ip_addrs.should have(61).entries
+      ipex = SnsUtils::IpExtractor.new([file]).run
+      ipex.ip_addrs.should have(92).entries
     end
   end
 
@@ -23,8 +23,8 @@ describe SnsUtils::IpExtractor do
     let(:file) { fixture_path("mac_simple.log") }
 
     it "finds valid entries" do
-      extractor = SnsUtils::IpExtractor.new([file]).run
-      extractor.mac_addrs.should have(2).entries
+      ipex = SnsUtils::IpExtractor.new([file]).run
+      ipex.mac_addrs.should have(2).entries
     end
   end
 
@@ -32,9 +32,10 @@ describe SnsUtils::IpExtractor do
     let(:file) { fixture_path("ipv4_ipv6_mac.log") }
 
     it "finds valid entries" do
-      extractor = SnsUtils::IpExtractor.new([file]).run
-      extractor.ip_addrs.should have(5).entries
-      extractor.mac_addrs.should have(1).entry
+      ipex = SnsUtils::IpExtractor.new([file]).run
+      pp ipex.ip_addrs
+      ipex.ip_addrs.should have(5).entries
+      ipex.mac_addrs.should have(1).entry
     end
   end
 
@@ -50,33 +51,33 @@ describe SnsUtils::IpExtractor do
     end
 
     it "has default IP and MAC threshold" do
-      extractor = SnsUtils::IpExtractor.new([file])
-      extractor.options.mac_threshold.should eql(8)
-      extractor.options.ip_threshold.should eql(10)
+      ipex = SnsUtils::IpExtractor.new([file])
+      ipex.options.mac_threshold.should eql(8)
+      ipex.options.ip_threshold.should eql(10)
     end
 
     it "uses default IP and MAC threshold" do
-      extractor = SnsUtils::IpExtractor.new([file])
-      extractor.run
+      ipex = SnsUtils::IpExtractor.new([file])
+      ipex.run
 
-      extractor.ip_addrs_log.should have(1).entry
-      extractor.mac_addrs_log.should have(1).entry
+      ipex.ip_addrs_log.should have(1).entry
+      ipex.mac_addrs_log.should have(1).entry
     end
 
     it "adjusts default IP and MAC threshold" do
-      extractor = SnsUtils::IpExtractor.new([file, "-i", "5", "-m", "4"])
-      extractor.options.mac_threshold.should eql(4)
-      extractor.options.ip_threshold.should eql(5)
+      ipex = SnsUtils::IpExtractor.new([file, "-i", "5", "-m", "4"])
+      ipex.options.mac_threshold.should eql(4)
+      ipex.options.ip_threshold.should eql(5)
     end
 
     it "uses adjusted IP and MAC threshold" do
-      extractor = SnsUtils::IpExtractor.new([file, "-i", "5", "-m", "5"]).run
-      extractor.ip_addrs_log.should have(2).entries
-      extractor.mac_addrs_log.should have(2).entries
+      ipex = SnsUtils::IpExtractor.new([file, "-i", "5", "-m", "5"]).run
+      ipex.ip_addrs_log.should have(2).entries
+      ipex.mac_addrs_log.should have(2).entries
 
-      extractor = SnsUtils::IpExtractor.new([file, "-i", "11", "-m", "11"]).run
-      extractor.ip_addrs_log.should be_empty
-      extractor.mac_addrs_log.should be_empty
+      ipex = SnsUtils::IpExtractor.new([file, "-i", "11", "-m", "11"]).run
+      ipex.ip_addrs_log.should be_empty
+      ipex.mac_addrs_log.should be_empty
     end
   end
 
