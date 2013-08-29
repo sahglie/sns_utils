@@ -3,10 +3,11 @@ module SnsUtils
     attr_accessor :file, :options
     attr_accessor :ip_addrs, :ip_addrs_log, :mac_addrs, :mac_addrs_log
 
-    IPV4_REGEX = ::SnsUtils::IPv4::REGEX
-    IPV6_REGEX = ::SnsUtils::IPv6::REGEX
-    MAC_REGEX = ::SnsUtils::MAC::REGEX
-    IP_REGEX = / ((?: ^|\s|[a-zA-Z]) (?: #{IPV6_REGEX} | #{IPV4_REGEX} | #{MAC_REGEX})) /xi
+    IP_REGEX = /
+        #{::SnsUtils::IPv4::REGEX} |
+        #{::SnsUtils::IPv6::REGEX} |
+        #{::SnsUtils::MAC::REGEX}
+    /xi
 
     def initialize(argv)
       @file, @options = parse_options(argv)
@@ -25,12 +26,14 @@ module SnsUtils
 
     def extract_addresses
       File.open(file, 'r').each do |line|
-        line.scan(IP_REGEX).each { |md| log_addr(md[0].to_s.strip!) }
+        line.scan(IP_REGEX).each do |ip|
+          log_addr(ip)
+        end
       end
     end
 
     def log_ip_addrs
-      self.ip_addrs_log  = ip_addrs.select { |_, count| count >= options.ip_threshold }.keys
+      self.ip_addrs_log = ip_addrs.select { |_, count| count >= options.ip_threshold }.keys
       write_file(::SnsUtils.ip_out_file, ip_addrs_log)
     end
 
@@ -57,6 +60,8 @@ module SnsUtils
     rescue IPAddr::InvalidAddressError => e
       mac_addrs[ip] ||= 0
       mac_addrs[ip] += 1
+    rescue IPAddr::AddressFamilyError => e
+      $stderr.puts(e.message)
     end
 
     def parse_options(argv)

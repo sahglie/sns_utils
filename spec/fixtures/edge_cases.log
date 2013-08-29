@@ -1,2 +1,8 @@
-# should match two ips 123.12.12.126-16-2013
+# should match one ip 123.12.12.126-16-2013
+# should match one ip 6-7-201123.12.12.127
+# should match one ip 6-7-201123.12.12.128-16-2013
 # invalid but should match by truncating last '0' 192.168.1.500
+# invalid but should match by truncating last '5' 192.168.1.555:80
+# ipv4 with port number 192.168.1.51:8080
+# ipv8 with port number # valid 2001:0000:1234:0000:0000:C1C0:ABCD:0876:8080
+# multi-line xyz:1 ip 123.12.12.129-16-2013 2013-1xxxy&& 2001:0000:1234:0000:0000:C1C0:ABCD:0877:8080 9%%%#+ 192.168.1.565:80

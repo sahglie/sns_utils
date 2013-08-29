@@ -15,7 +15,7 @@ describe SnsUtils::IpExtractor do
 
     it "finds valid entries" do
       ipex = SnsUtils::IpExtractor.new([file]).run
-      ipex.ip_addrs.should have(92).entries
+      ipex.ip_addrs.should have(96).entries
     end
   end
 
@@ -99,6 +99,20 @@ describe SnsUtils::IpExtractor do
       SnsUtils::IpExtractor.new([file, "-d", tmp_dir]).run
       File.exists?("#{tmp_dir}/#{::SnsUtils.ip_out_file}").should be_true
       File.exists?("#{tmp_dir}/#{::SnsUtils.mac_out_file}").should be_true
+    end
+  end
+end
+
+
+describe "SnsUtils::IpExtractor" do
+  context "extracting edge cases" do
+    let(:file) { fixture_path("edge_cases.log") }
+
+    it "finds valid entries" do
+      ipex = SnsUtils::IpExtractor.new([file]).run
+
+      pp ipex.ip_addrs
+      ipex.ip_addrs.should have(10).entries
     end
   end
 end
