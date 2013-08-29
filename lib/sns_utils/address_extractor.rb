@@ -4,7 +4,13 @@ module SnsUtils
     attr_accessor :ip_addrs, :ip_addrs_log, :mac_addrs, :mac_addrs_log
 
     IP_REGEX = /
-        #{::SnsUtils::IPv4::REGEX} | #{::SnsUtils::IPv6::REGEX} | #{::SnsUtils::MAC::REGEX}
+        \b
+        (
+          #{::SnsUtils::IPv4::REGEX} |
+          #{::SnsUtils::IPv6::REGEX} |
+          #{::SnsUtils::MAC::REGEX}
+        )
+        \b
     /xi
 
     def initialize(argv)
@@ -24,8 +30,8 @@ module SnsUtils
 
     def extract_addresses
       File.open(file, 'r').each do |line|
-        line.scan(IP_REGEX).each do |ip|
-          log_addr(ip)
+        line.scan(IP_REGEX).each do |md|
+          log_addr(md[0].to_s.strip)
         end
       end
     end

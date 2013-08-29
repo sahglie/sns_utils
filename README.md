@@ -33,17 +33,18 @@ Or install it yourself as:
 
 ### Grep Baseline Perf
 
+The following grep commands try to match only IPv6 addresses using the
+same regex as the addrex utility
+
 xlarge.log is 5GB with 50 million lines
 
-    time grep -c  -E '(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}' spec/fixtures/xlarge.log
-    => real 12m0.658s
-       user 11m59.672s
-       sys  0m0.991s
+    time grep -c  -E '\b(?:(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?::(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?|(?:[0-9A-Fa-f]{1,4}:){6,6}\d+\.\d+\.\d+\.\d+|(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?::(?:[0-9A-Fa-f]{1,4}:)*\d+\.\d+\.\d+\.\d+)\b' spec/fixtures/xlarge.log
+    => Exceeded 15 min
 
 
 xlarge.log is 514MB with 5 million lines
 
-    time grep -c  -E '(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}' spec/fixtures/xlarge.log
+    time grep -c  -E '\b(?:(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?::(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?|(?:[0-9A-Fa-f]{1,4}:){6,6}\d+\.\d+\.\d+\.\d+|(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?::(?:[0-9A-Fa-f]{1,4}:)*\d+\.\d+\.\d+\.\d+)\b' spec/fixtures/xlarge.log
     => real 1m12.063s
        user 1m11.956s
        sys  0m0.108s
@@ -53,8 +54,7 @@ xlarge.log is 514MB with 5 million lines
 xlarge.log is 514MB with 5 million lines
 
     addrex spec/fixtures/xlarge.log
-    => real 2m18.938s
-       user 2m18.356s
+    => real 3m7.938s
+       user 3m6.356s
        sys  0m0.578s
-
 

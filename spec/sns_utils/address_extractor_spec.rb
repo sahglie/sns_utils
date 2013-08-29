@@ -15,7 +15,7 @@ describe SnsUtils::AddressExtractor do
 
     it "finds valid entries" do
       addrex = SnsUtils::AddressExtractor.new([file]).run
-      addrex.ip_addrs.should have(96).entries
+      addrex.ip_addrs.should have(72).entries
     end
   end
 
@@ -112,7 +112,7 @@ describe "SnsUtils::IpExtractor" do
       addrex = SnsUtils::AddressExtractor.new([file]).run
 
       pp addrex.ip_addrs
-      addrex.ip_addrs.should have(10).entries
+      addrex.ip_addrs.should have(7).entries
     end
   end
 end

@@ -1,12 +1,12 @@
-IPEX(1) 							       IPEX(1)
+ADDREX(1)							     ADDREX(1)
 
 
 
 NAME
-       ipex - IP/Mac Address Extractor
+       addrex - IP/Mac Address Extractor
 
 SYNOPSIS
-       ipex FILE [-m THRESHOLD] [-i THRESHOLD] [-d OUTPUT_DIR]
+       addrex FILE [-m THRESHOLD] [-i THRESHOLD] [-d OUTPUT_DIR]
 
 DESCRIPTION
        Find  and  extract  IP and MAC addresses in FILE. Addresses with repeat
@@ -46,8 +46,8 @@ FORMATS
 NOTE ON LARGE FILES
        Depending  on  how large the file is, this utility can take a long time
        to complete: for a 512MB file with (5 million)  entries	it  took  just
-       over 2 min -- YMMV depending on your hardware
+       over 3 min -- YMMV depending on your hardware
 
 
 
-				  August 2013			       IPEX(1)
+				  August 2013			     ADDREX(1)

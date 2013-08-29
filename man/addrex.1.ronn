@@ -38,6 +38,6 @@ Matches the following address formats:
 
 ## NOTE ON LARGE FILES
 Depending on how large the file is, this utility can take a long time to
-complete: for a 512MB file with (5 million) entries it took just over 2 min
+complete: for a 512MB file with (5 million) entries it took just over 3 min
 -- YMMV depending on your hardware
 
