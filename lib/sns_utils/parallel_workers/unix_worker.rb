@@ -43,13 +43,15 @@ module SnsUtils
       end
 
       def report_ips
-        ips.each { |ip| @ip_writer.write("#{ip}\n") }
-        @ip_writer.close
+        sums = Hash.new(0)
+        ips.each { |ip| sums[ip] += 1 }
+        sums.each_entry { |ip, count| @ip_writer.write("#{ip} #{count}\n") }
       end
 
       def report_macs
-        macs.each { |mac| @mac_writer.write("#{mac}\n") }
-        @mac_writer.close
+        sums = Hash.new(0)
+        macs.each { |mac| sums[mac] += 1 }
+        sums.each_entry { |mac, count| @mac_writer.write("#{mac} #{count}\n") }
       end
 
       def log_address(ip)

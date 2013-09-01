@@ -15,9 +15,12 @@ module SnsUtils
 
     def run
       start_workers
+      puts "started workers"
       #register_signals
       wait_for_workers
+      puts "waited for workers"
       read_addresses
+      puts "read addresses"
       log_addresses
       self
     end
@@ -62,10 +65,16 @@ module SnsUtils
     end
 
     def read_addresses
-      ip_reader.read.split("\n").each { |ip| ip_addrs[ip] += 1 }
+      ip_reader.read.split("\n").each do |line|
+        ip, count = line.split(" ")
+        ip_addrs[ip] += count.to_i
+      end
       ip_reader.close
 
-      mac_reader.read.split("\n").each { |mac| mac_addrs[mac] += 1 }
+      mac_reader.read.split("\n").each do |line|
+        mac, count = line.split(" ")
+        mac_addrs[mac] += count.to_i
+      end
       mac_reader.close
     end
 
