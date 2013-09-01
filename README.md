@@ -49,7 +49,7 @@ xlarge.log is 514MB with 5 million lines
        user 4m10.956s
        sys  0m0.108s
 
-## ip_extract
+## addrex
 
 xlarge.log is 514MB with 5 million lines
 
