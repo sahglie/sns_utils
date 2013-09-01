@@ -7,8 +7,9 @@ require 'ostruct'
 require_relative 'sns_utils/ipv4'
 require_relative 'sns_utils/ipv6'
 require_relative 'sns_utils/mac'
-require_relative 'sns_utils/partitions'
 require_relative "sns_utils/address_extractor"
+require_relative 'sns_utils/options'
+require_relative 'sns_utils/line_ranges'
 require_relative "sns_utils/parallel_workers"
 require_relative "sns_utils/version"
 
@@ -41,8 +42,7 @@ end
 
 
 if $PROGRAM_NAME == __FILE__
-  #line = "9.9.9 blah blah blah VALID 0.0.0.0 xxxx<<> 2001:0000:1234:0000:0000:C1C0:ABCD:0876 VALID >>> blah blah blah VALID 00:A0:C9:14:C8:29"
-  #::SnsUtils.create_test_log(line, 1_000_000)
-  pp File.open("#{::SnsUtils.root}/spec/fixtures/xlarge.log", "r").count
+  line = "9.9.9 blah blah blah VALID 0.0.0.0 xxxx<<> 2001:0000:1234:0000:0000:C1C0:ABCD:0876 VALID >>> blah blah blah VALID 00:A0:C9:14:C8:29"
+  ::SnsUtils.create_test_log(line, 100_000)
 end
 
