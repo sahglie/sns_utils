@@ -15,12 +15,9 @@ module SnsUtils
 
     def run
       start_workers
-      puts "started workers"
       #register_signals
       wait_for_workers
-      puts "waited for workers"
       read_addresses
-      puts "read addresses"
       log_addresses
       self
     end
