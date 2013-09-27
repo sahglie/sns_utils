@@ -15,7 +15,6 @@ module SnsUtils
 
     def run
       start_workers
-      #register_signals
       wait_for_workers
       read_addresses
       log_addresses
@@ -45,14 +44,6 @@ module SnsUtils
 
     def start_worker(ip_writer, mac_writer, file, line_range)
       ParallelWorkers::UnixWorker.new(ip_writer, mac_writer, file, line_range).start
-    end
-
-    def register_signals
-      [:INT, :QUIT].each do |sig|
-        Signal.trap(sig) do
-          worker_pids.each { |pid| Process.kill(sig, pid) }
-        end
-      end
     end
 
     def wait_for_workers
