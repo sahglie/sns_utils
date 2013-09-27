@@ -10,5 +10,5 @@ begin
 rescue Errno::ENOENT => err
   abort "addrex: #{err.message}"
 rescue OptionParser::InvalidOption, OptionParser::InvalidArgument
-  abort "usage: addrex FILE [-m MAC_THRESHOLD] [-i IP_THRESHOLD] [-d OUTPUT_DIR]"
+  abort "usage: addrex FILE [-w NUM_WORKERS] [-m MAC_THRESHOLD] [-i IP_THRESHOLD] [-d OUTPUT_DIR]"
 end

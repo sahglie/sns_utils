@@ -1,97 +1,87 @@
 module SnsUtils
   class AddressExtractor
     attr_accessor :file, :options
-    attr_accessor :ip_addrs, :ip_addrs_log, :mac_addrs, :mac_addrs_log
-
-    IP_REGEX = /
-        \b
-        (
-          #{::SnsUtils::IPv4::REGEX} |
-          #{::SnsUtils::IPv6::REGEX} |
-          #{::SnsUtils::MAC::REGEX}
-        )
-        \b
-    /xi
+    attr_accessor :ip_addrs, :mac_addrs
+    attr_accessor :worker_pids
+    attr_accessor :ip_reader, :ip_writer
+    attr_accessor :mac_reader, :mac_writer
 
     def initialize(argv)
-      @file, @options = parse_options(argv)
-      self.ip_addrs = {}
-      self.mac_addrs = {}
+      @file = argv[0] || raise(OptionParser::InvalidOption.new)
+      @options = ::SnsUtils::Options.parse(argv)
+      @ip_addrs, @mac_addrs = Hash.new(0), Hash.new(0)
+      @worker_pids = []
     end
 
     def run
-      extract_addresses
-      log_ip_addrs
-      log_mac_addrs
+      start_workers
+      wait_for_workers
+      read_addresses
+      log_addresses
       self
     end
 
     private
 
-    def extract_addresses
-      File.open(file, 'r').each do |line|
-        line.scan(IP_REGEX).each do |md|
-          log_addr(md[0].to_s.strip)
+    def start_workers
+      @ip_reader, @ip_writer = IO.pipe
+      @mac_reader, @mac_writer = IO.pipe
+
+      num_lines = File.open(file).count
+      ranges = LineRanges.calc(num_lines, options.num_workers)
+
+      ranges.each do |line_range|
+        worker_pids << fork do
+          @ip_reader.close
+          @mac_reader.close
+          start_worker(@ip_writer, @mac_writer, file, line_range)
         end
       end
+
+      @ip_writer.close
+      @mac_writer.close
     end
 
-    def log_ip_addrs
-      self.ip_addrs_log = ip_addrs.select { |_, count| count >= options.ip_threshold }.keys
-      write_file(::SnsUtils.ip_out_file, ip_addrs_log)
+    def start_worker(ip_writer, mac_writer, file, line_range)
+      ParallelWorkers::UnixWorker.new(ip_writer, mac_writer, file, line_range).start
     end
 
-    def log_mac_addrs
-      self.mac_addrs_log = mac_addrs.select { |_, count| count >= options.mac_threshold }.keys
-      write_file(::SnsUtils.mac_out_file, mac_addrs_log)
+    def wait_for_workers
+      worker_pids.each { Process.wait }
+    rescue Errno::ECHILD
+      # noop
+    end
+
+    def read_addresses
+      ip_reader.read.split("\n").each do |line|
+        ip, count = line.split(" ")
+        ip_addrs[ip] += count.to_i
+      end
+      ip_reader.close
+
+      mac_reader.read.split("\n").each do |line|
+        mac, count = line.split(" ")
+        mac_addrs[mac] += count.to_i
+      end
+      mac_reader.close
+    end
+
+    def log_addresses
+      ip_addrs.select! { |_, count| count >= options.ip_threshold }
+      mac_addrs.select! { |_, count| count >= options.mac_threshold }
+      write_file(::SnsUtils.ip_out_file, ip_addrs.keys)
+      write_file(::SnsUtils.mac_out_file, mac_addrs.keys)
     end
 
     def write_file(file, entries)
       file_path = output_dir(options.output_dir, file)
       File.open(file_path, "w+") do |f|
-        entries.each { |e| f.puts(e) }
+        entries.each { |ip| f.puts(ip) }
       end
     end
 
     def output_dir(dir, file)
       dir ? File.expand_path(File.join(dir, file)) : file
-    end
-
-    def log_addr(ip)
-      key = IPAddr.new(ip).to_string
-      ip_addrs[key] ||= 0
-      ip_addrs[key] += 1
-    rescue IPAddr::InvalidAddressError => e
-      mac_addrs[ip] ||= 0
-      mac_addrs[ip] += 1
-    rescue IPAddr::AddressFamilyError => e
-      $stderr.puts(e.message)
-    end
-
-    def parse_options(argv)
-      options = OpenStruct.new
-      options.mac_threshold = 8
-      options.ip_threshold = 10
-      options.output_dir = nil
-
-      parser = OptionParser.new do |opts|
-        opts.on("-m N", Integer, "MAC address threshold, logs entries with N <= occurrences") do |n|
-          options.mac_threshold = Integer(n).abs
-        end
-
-        opts.on("-i N", Integer, "IP address threshold, logs entries with N =< occurrences") do |n|
-          options.ip_threshold = Integer(n).abs
-        end
-
-        opts.on("-d OUTPUT_DIR", String, "Dir used to write output files") do |dir|
-          options.output_dir = dir
-        end
-      end
-
-      parser.parse(argv)
-
-      file = argv[0] || raise(OptionParser::InvalidOption.new)
-      [file, options]
     end
   end
 end

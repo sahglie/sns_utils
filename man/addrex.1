@@ -7,12 +7,16 @@
 \fBaddrex\fR \- IP/Mac Address Extractor
 .
 .SH "SYNOPSIS"
-\fBaddrex FILE [\-m THRESHOLD] [\-i THRESHOLD] [\-d OUTPUT_DIR]\fR
+\fBaddrex FILE [\-w WORKERS] [\-m THRESHOLD] [\-i THRESHOLD] [\-d OUTPUT_DIR]\fR
 .
 .SH "DESCRIPTION"
 Find and extract IP and MAC addresses in FILE\. Addresses with repeat occurrences greater than or equal to a given threshold are logged to ip_addrs\.txt and mac_addrs\.txt respectively\. By default, MAC addresses that occur at least 8 times are logged and IP addresses that occur at least 10 times are logged\. All matches are performed as case insensitive\.
 .
 .SH "OPTIONS"
+.
+.TP
+\fB\-w\fR
+Set the number of workers (processes) that should be used, defaults to 1
 .
 .TP
 \fB\-m\fR
@@ -53,4 +57,4 @@ MAC: Separated by \':\' aa:bb:cc:dd:ee:ff
 .IP "" 0
 .
 .SH "NOTE ON LARGE FILES"
-Depending on how large the file is, this utility can take a long time to complete: for a 512MB file with (5 million) entries it took just over 3 min \-\- YMMV depending on your hardware
+Depending on how large the file is, this utility can take a long time to complete\. For a 512MB file with (5 million) entries it takes around 3 min to complete using a single worker\. The same file takes around 1 min to complete when 5\-6 workers are used\. \-\- YMMV depending on your hardware
